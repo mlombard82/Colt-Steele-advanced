@@ -262,3 +262,33 @@ function doubleOddNumbers(arr){
         return value * 2;
     })
 }
+
+
+// SOME ************************************************
+
+function some(arr, callback){
+    for(var i = 0; i < arr.length; i++){
+        if(callback(arr[i], i, arr)){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function every(arr, callback){
+    for(var i = 0; i < arr.length; i++){
+        if(callback(arr[i], i, arr) === false){
+            return false;
+        }
+    }
+    return true;
+}
+
+function allLowerCase (str){
+    return str.split('').every(function(value, index, arr){
+        return value === value.toLowerCase();
+    });
+}
+
+allLowerCase('this is really nice');
