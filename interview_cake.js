@@ -1,7 +1,10 @@
 // HIGHEST PRODUCT OF 3. GIVEN AN ARRAY OF INTEGERS, FIND THE HIGHEST PRODUCT YOU CAN GET FROM 3 OF THE INTEGERS.
 // the input of arrayOfInts will always have at least 3 integers.
 
-// solution
+// SOLUTION. Use of a greedy A to keep track 
+// -looping through the array and using Math.max() & Math.min() 
+// functions, of the values that are relevant.
+
 
 function highestProductOf3(arrayOfInts){
     if(arrayOfInts.length < 3){
