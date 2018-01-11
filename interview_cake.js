@@ -1,9 +1,62 @@
-// HIGHEST PRODUCT OF 3. GIVEN AN ARRAY OF INTEGERS, FIND THE HIGHEST PRODUCT YOU CAN GET FROM 3 OF THE INTEGERS.
+
+// 2. PRODUCT OF ALL OTHER NUMBERS. You have an array of integers, and for each index you want to
+// find the product of every integer except the integer at that index.
+
+// write a function getProductsOfAllIntsExceptAtIndex() that takes an array of integers and returns
+// an array of the products.
+// for ex: given [1,7,3,4] your function would return [84,12,28,21]
+
+// a BF approach would use two loops to multiply the integer at every index by the integer at every nestedIndex, unless index === nestedIndex. O(N^2)
+
+// SOLUTION. Solution
+// To find the products of all the integers except the integer at each index, we'll go through our array greedily ↴ twice. First we get the products of all the integers before each index, and then we go backwards to get the products of all the integers after each index.
+// When we multiply all the products before and after each index, we get our answer—the products of all the integers except the integer at each index!
+
+
+function getProductsOfAllIntsExceptAtIndex(intArray){
+    if(intArray.length < 2){
+        throw new Error('At least 2 numbers are required!')
+    }
+
+    var productsOfAllIntsExceptAtIndex = [];
+
+    var productSoFar = 1;
+    for(var i = 0; i < intArray.length; i++){
+        productsOfAllIntsExceptAtIndex[i] = productSoFar;
+        productSoFar *= intArray[i]; 
+    }
+
+    productSoFar = 1;
+    for(var j = intArray.length - 1; j>= 0; j--){
+        productsOfAllIntsExceptAtIndex[j] *= productSoFar;
+        productSoFar *= intArray[j]; 
+    }
+
+    return productsOfAllIntsExceptAtIndex;
+}
+
+getProductsOfAllIntsExceptAtIndex([4,2,3,8,2]);
+
+
+
+
+
+
+
+
+
+
+// 3. HIGHEST PRODUCT OF 3. GIVEN AN ARRAY OF INTEGERS, FIND THE HIGHEST PRODUCT YOU CAN GET FROM 3 OF THE INTEGERS.
 // the input of arrayOfInts will always have at least 3 integers.
+
+// BRUTE FORCE: probably involve 3 nesting loops and a O(n^3) runtime.
+// SORTING: Would let us grab the highest numbers quickly. Sorting takes O(n lg n) time.
+// SOLUTION: Greedy A. O(n) time, O(1) space.
 
 // SOLUTION. Use of a greedy A to keep track 
 // -looping through the array and using Math.max() & Math.min() 
-// functions, of the values that are relevant.
+// functions, of the values that are relevant. Need to update the variables in the right order, otherwise you might end up
+// e.g multiplying the current number by itself to get a new highestProductOf2.
 
 
 function highestProductOf3(arrayOfInts){
